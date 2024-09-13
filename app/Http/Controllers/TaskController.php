@@ -12,7 +12,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        return Task::all();
+        return Task::orderBy('id', 'asc')->get();
     }
 
     public function show(Task $task)
@@ -36,7 +36,11 @@ class TaskController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $taskDTO = new TaskDTO($request->input('title'), $request->input('description'), $request->input('status'));
+        $taskDTO = new TaskDTO(
+            $request->input('title'),
+            $request->input('description'),
+            $request->input('status')
+        );
 
         $task = Task::create([
             'titulo' => $taskDTO->getTitulo(),
@@ -50,6 +54,7 @@ class TaskController extends Controller
     public function update(Request $request, $id)
     {
         $task = Task::find($id);
+
         if (!$task) {
             return response()->json(['message' => 'Task not found'], 404);
         }
@@ -65,15 +70,16 @@ class TaskController extends Controller
         }
 
         $taskDTO = new TaskDTO(
-            $request->input('title', $task->title),
-            $request->input('description', $task->description),
-            $request->input('status', $task->status)
+            $request->input('title'),
+            $request->input('description'),
+            $request->input('status')
         );
 
+
         $task->update([
-            'title' => $taskDTO->getTitulo(),
-            'description' => $taskDTO->getDescripcion(),
-            'status' => $taskDTO->getEstado(),
+            'titulo' => $taskDTO->getTitulo(),
+            'descripcion' => $taskDTO->getDescripcion(),
+            'estado' => $taskDTO->getEstado(),
         ]);
 
         return response()->json($task);
