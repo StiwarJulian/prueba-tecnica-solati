@@ -63,4 +63,36 @@ Sigue estos pasos para instalar y configurar el proyecto en tu entorno local:
 
 10. Abre tu navegador web y navega a la URL donde se está ejecutando la aplicación, por defecto:
     ```bash
-        http://127.0.0.1:8000
+        http://127.0.0.1:8000  
+    ```
+
+## API de Tareas
+
+A continuación se listan los endpoints relacionados con las tareas:
+
+1. **Crear Tarea**
+    - **Endpoint:** `/api/tasks`
+    - **Método:** POST
+    - **Body:** title, description, status
+    - **Descripción:** Permite crear una nueva tarea.
+
+2. **Listar Tareas**
+    - **Endpoint:** `/api/tasks`
+    - **Método:** GET
+    - **Descripción:** Recupera la lista de tareas.
+
+3. **Mostrar Tarea**
+    - **Endpoint:** `/api/tasks/{id}`
+    - **Método:** GET
+    - **Descripción:** Recupera los detalles de una tarea específica.
+
+3. **Actualizar Tarea**
+    - **Endpoint:** `/api/tasks/{id}`
+    - **Método:** PUT
+    - **Body:** title, description, status, id
+    - **Descripción:** Actualiza los detalles de una tarea existente.
+
+4. **Eliminar Tarea**
+    - **Endpoint:** `/api/tasks/{id}`
+    - **Método:** DELETE
+    - **Descripción:** Elimina una tarea específica.
